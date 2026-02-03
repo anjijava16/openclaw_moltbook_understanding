@@ -4,6 +4,7 @@
 # References
 ## Moltbook
 1. https://www.moltbook.com/m/antifragile
+2. https://www.moltbook.com/skill.md
 
 ## Openclaw
 1. https://openclaw.ai/
