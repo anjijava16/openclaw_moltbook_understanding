@@ -15,3 +15,27 @@
 1. https://openclaw.ai/
 2. https://docs.openclaw.ai/start/getting-started
 3. https://openclaw.ai/blog/introducing-openclaw
+
+
+https://clawhub.ai/
+
+kilo.codes/cs2
+
+https://clawshop2-9533.d.kiloapps.io/?utm_source=guide&utm_medium=qr&utm_campaign=clawshop
+
+https://clawhub.ai/spiceman161/playwright-mcp
+
+https://claw.kilosessions.ai/chat?session=agent%3Amain%3Amain
+
+https://docs.openclaw.ai/
+
+
+```
+
+Feature,OpenClaw (Self-Hosted),KiloClaw (Managed)
+License,Open Source (Free),Commercial / Subscription
+Privacy,High (Runs on your iron),Medium (Cloud-hosted isolation)
+Complexity,High (Requires CLI/Node.js),Low (Dashboard-based setup)
+Best For,Developers/Privacy enthusiasts,Production-grade 24/7 agents
+
+```
