@@ -331,6 +331,54 @@ Docs: https://docs.openclaw.ai/cli
 welcome@jaisairams-Laptop ~ %
 
 ```
+# openclaw models
+
+```
+welcome@jaisairams-Laptop ~ % openclaw models
+
+🦞 OpenClaw 2026.4.29 (a448042) — Your terminal just grew claws—type something and let the bot pinch the busywork.
+
+Config        : ~/.openclaw/openclaw.json
+Agent dir     : ~/.openclaw/agents/main/agent
+Default       : openai/gpt-5.5
+Fallbacks (0) : -
+Image model   : -
+Image fallbacks (0): -
+Aliases (1)   : GPT -> openai/gpt-5.5
+Configured models (1): openai/gpt-5.5
+
+Auth overview
+Auth store    : ~/.openclaw/agents/main/agent/auth-profiles.json
+Shell env     : off
+Providers w/ OAuth/tokens (0): -
+- anthropic effective=env:sk-ant-a...MP24mwAA | env=sk-ant-a...MP24mwAA | source=env: ANTHROPIC_API_KEY
+- anthropic-openai effective=env:sk-ant-a...MP24mwAA | env=sk-ant-a...MP24mwAA | source=env: ANTHROPIC_API_KEY
+- claude-cli effective=env:sk-ant-a...MP24mwAA | env=sk-ant-a...MP24mwAA | source=env: ANTHROPIC_API_KEY | synthetic=plugin-owned | source=plugin synthetic auth
+- deepgram effective=env:6d49e4b4...740a8b8b | env=6d49e4b4...740a8b8b | source=env: DEEPGRAM_API_KEY
+- elevenlabs effective=env:sk_a0bf0...9440e5eb | env=sk_a0bf0...9440e5eb | source=env: ELEVENLABS_API_KEY
+- google effective=env:AIzaSyAg...KNbsfdMU | env=AIzaSyAg...KNbsfdMU | source=env: GEMINI_API_KEY
+- google-vertex effective=env:gcp-vert...dentials | env=gcp-vert...dentials | source=gcloud adc
+- openai effective=profiles:~/.openclaw/agents/main/agent/auth-profiles.json | profiles=1 (oauth=0, token=*** api_key=1) | openai:default=sk-proj-...I_-r3Z8A | env=sk-proj-...I_-r3Z8A | source=env: OPENAI_API_KEY
+- tavily effective=env:tvly-YgD...fViKiI4W | env=tvly-YgD...fViKiI4W | source=env: TAVILY_API_KEY
+- venice effective=env:VENICE_A...H3Lcym4k | env=VENICE_A...H3Lcym4k | source=env: VENICE_API_KEY
+
+OAuth/token status
+- none
+welcome@jaisairams-Laptop ~ % more ~/.openclaw/agents/main/agent/auth-profiles.json
+{
+  "version": 1,
+  "profiles": {
+    "openai:default": {
+      "type": "api_key",
+      "provider": "openai",
+      "key": "sk-proj-A"
+    }
+  }
+}
+welcome@jaisairams-Laptop ~ % more
+
+```
+
 welcome@jaisairams-Laptop frontend % more /Users/welcome/.zshrc
 
 
