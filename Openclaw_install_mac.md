@@ -5,6 +5,20 @@
 # Windows (PowerShell)
 1. iwr -useb https://openclaw.ai/install.ps1 | iex
 
+
+# Key Files path
+
+```
+Last login: Tue May  5 22:57:52 on ttys018
+welcome@jaisairams-Laptop service-env % ls -ltr
+total 16
+-rw-------@ 1 welcome  staff  822 May  5 22:55 ai.openclaw.gateway.env
+-rwx------@ 1 welcome  staff   95 May  5 22:55 ai.openclaw.gateway-env-wrapper.sh
+welcome@jaisairams-Laptop service-env % pwd
+/Users/welcome/.openclaw/service-env
+welcome@jaisairams-Laptop service-env % 
+
+```
 # Path
 welcome@jaisairams-Laptop frontend % export PATH="/opt/homebrew/Cellar/node@22/22.22.2_2/bin:$PATH"
 
