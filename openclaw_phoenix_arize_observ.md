@@ -1,3 +1,6 @@
+https://github.com/pingshian0131/openclaw-plugin-llm-trace-phoenix
+
+
 pdate available (npm 2026.5.7). Run: openclaw update
 Next steps:
   Need to share?      openclaw status --all
