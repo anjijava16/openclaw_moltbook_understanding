@@ -1,0 +1,139 @@
+{
+  "agents": {
+    "defaults": {
+      "model": {
+        "primary": "ollama/qwen3.5:9b"
+      },
+      "models": {
+        "anthropic/claude-opus-4-7": {},
+        "openai/gpt-5.5": {
+          "alias": "GPT"
+        }
+      },
+      "workspace": "/Users/welcome/.openclaw/workspace"
+    }
+  },
+  "auth": {
+    "profiles": {
+      "anthropic:default": {
+        "mode": "api_key",
+        "provider": "anthropic"
+      },
+      "openai:default": {
+        "mode": "api_key",
+        "provider": "openai"
+      }
+    }
+  },
+  "gateway": {
+    "auth": {
+      "mode": "token",
+      "token": "xxxxxx"
+    },
+    "bind": "loopback",
+    "controlUi": {
+      "allowInsecureAuth": true
+    },
+    "mode": "local",
+    "nodes": {
+      "denyCommands": [
+        "camera.snap",
+        "camera.clip",
+        "screen.record",
+        "contacts.add",
+        "calendar.add",
+        "reminders.add",
+        "sms.send",
+        "sms.search"
+      ]
+    },
+    "port": 18789,
+    "tailscale": {
+      "mode": "off",
+      "resetOnExit": false
+    }
+  },
+  "mcp": {
+    "servers": {
+      "custom-1": {}
+    }
+  },
+  "meta": {
+    "lastTouchedAt": "2026-05-10T04:41:46.847Z",
+    "lastTouchedVersion": "2026.4.29"
+  },
+  "models": {
+    "providers": {
+      "ollama": {
+        "api": "ollama",
+        "apiKey": "ollama-local",
+        "baseUrl": "http://127.0.0.1:11434",
+        "models": [
+          {
+            "contextWindow": 262144,
+            "cost": {
+              "cacheRead": 0,
+              "cacheWrite": 0,
+              "input": 0,
+              "output": 0
+            },
+            "id": "qwen3.5:9b",
+            "input": [
+              "text",
+              "image"
+            ],
+            "name": "qwen3.5:9b",
+            "reasoning": true
+          }
+        ]
+      }
+    }
+  },
+  "plugins": {
+    "allow": [
+      "anthropic",
+      "ollama",
+      "openai",
+      "llm-trace-phoenix"
+    ],
+    "entries": {
+      "anthropic": {
+        "enabled": true
+      },
+      "ollama": {
+        "enabled": true
+      },
+      "openai": {
+        "enabled": true
+      },
+      "llm-trace-phoenix": {
+        "enabled": true,
+        "config": {
+          "phoenixUrl": "http://localhost:6006",
+          "projectName": "openclaw"
+        },
+        "hooks": {
+          "allowConversationAccess": true
+        }
+      }
+    }
+  },
+  "session": {
+    "dmScope": "per-channel-peer"
+  },
+  "tools": {
+    "profile": "coding",
+    "web": {
+      "search": {
+        "enabled": true,
+        "provider": "ollama"
+      }
+    }
+  },
+  "wizard": {
+    "lastRunAt": "2026-05-06T04:13:22.799Z",
+    "lastRunCommand": "configure",
+    "lastRunMode": "local",
+    "lastRunVersion": "2026.4.29"
+  }
+}
