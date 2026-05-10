@@ -10,3 +10,8 @@
 1. https://builder.aws.com/content/39vFiQ645qDsmGd9r77eFCuw29p/running-openclaw-on-bedrock-agentcore-a-shared-ai-assistant-for-teams-and-families
 2. https://medium.com/@brookejamieson/you-dont-need-a-mac-mini-to-run-openclaw-here-s-how-you-can-use-lightsail-for-24-month-instead-c83a72bcba04
 3. https://www.youtube.com/watch?v=CQfMRhP94Q4
+
+
+# References-3
+1. https://www.skool.com/aianswers/classroom/f770c8d8?md=c9e3a412af43431591aa547302941543
+2. https://www.skool.com/aianswers/new-members-start-here?p=3b53e42f
