@@ -1,5 +1,24 @@
 
-# Add the calendar skills to openclaw
+# openclaw skills Info 
+
+# Search for skills
+
+1. openclaw skills search "calendar"     # or "github", "email", etc.
+
+2. openclaw skills search "web scraping"
+
+# Install one or more
+1. openclaw skills install github
+2. openclaw skills install calendar email web-search
+
+# Specific version
+1. openclaw skills install humanizer@1.2.0
+
+# Update
+1. openclaw skills update --all
+
+
+## Add the calendar skills to openclaw
 welcome@jaisairams-Laptop workspace % openclaw skills search "calendar"
 
 ```
