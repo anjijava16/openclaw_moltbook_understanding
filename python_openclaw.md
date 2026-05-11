@@ -1,3 +1,6 @@
+# Reference apps
+1. https://github.com/openxjarvis/openclaw-python/blob/main/pyproject.toml
+
 If you want an architecture similar to OpenClaw — where:
 
 * Frontend = JavaScript / React / Next.js
