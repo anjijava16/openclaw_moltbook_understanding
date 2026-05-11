@@ -28,6 +28,109 @@ Installed github@1.0.0 -> /Users/welcome/.openclaw/workspace/skills/github
 1. openclaw skills update --all
 
 
+**OpenClaw Skills Installation Guide**
+
+Skills in OpenClaw are directories containing a `SKILL.md` file (with YAML frontmatter + instructions) that teach your agent how to use tools, integrate with services (e.g., GitHub, calendar, email, browser), or follow specific workflows. They turn a basic chatbot into a capable assistant.
+
+### 1. Prerequisites
+- OpenClaw installed and running (Gateway active).
+- Access to a terminal in your workspace or where OpenClaw is set up.
+- For many skills: API keys, system tools (e.g., via Homebrew on macOS), or dependencies.
+
+### 2. Main Ways to Install Skills
+
+#### Method A: Using OpenClaw CLI (Recommended)
+```bash
+# Search for skills
+openclaw skills search "calendar"     # or "github", "email", etc.
+openclaw skills search "web scraping"
+
+# Install one or more
+openclaw skills install github
+openclaw skills install calendar email web-search
+
+# Specific version
+openclaw skills install humanizer@1.2.0
+
+# Update
+openclaw skills update --all
+```
+
+- Skills install into your active **workspace** `skills/` folder (highest priority).
+- Restart the session or Gateway for changes to take full effect.
+
+#### Method B: ClawHub CLI (for more control / publishing)
+```bash
+# Install ClawHub CLI globally
+npm i -g clawhub
+# or
+pnpm add -g clawhub
+
+# Then use
+clawhub install <skill-slug>
+clawhub search "email"
+```
+
+This installs into `./skills` (or your configured workspace).
+
+#### Method C: Chat with Your Agent (Easiest for Beginners)
+Once chatting with OpenClaw (e.g., via Telegram):
+> "Please install the github skill for me using ClawHub."
+
+Or name the skill directly. It works for skills listed on ClawHub.
+
+#### Method D: Manual Installation
+1. Download the skill folder from ClawHub (clawhub.ai) or GitHub.
+2. Place it in one of these locations (higher precedence first):
+   - Workspace: `<workspace>/skills/<skill-name>/`
+   - `~/.openclaw/skills/<skill-name>/`
+3. Ensure it contains `SKILL.md`.
+
+### 3. Verify Installation
+```bash
+openclaw skills list
+openclaw skills list --verbose
+
+# Ask your agent
+"What skills do you have available?" 
+"List installed skills"
+```
+
+### 4. Popular / Recommended Skills to Start With
+- **github** — Repo management, issues, PRs.
+- **calendar** / **google-calendar** — Scheduling.
+- **email** / **agentmail** — Send/read emails.
+- **playwright** variants — Browser automation & scraping.
+- **weather**, **web-search**, **obsidian** (notes).
+
+Browse trending and categories at **[clawhub.ai](https://clawhub.ai)**.
+
+### 5. Configuration & Management
+- **Allowlists**: Control per-agent skills in `openclaw.json` (see docs for `agents.defaults.skills`).
+- **Bundled skills**: Many are included; some auto-activate if tools (e.g., `git`) are present.
+- **Update / Remove**:
+  ```bash
+  openclaw skills update <slug>
+  # Manual removal: delete the folder and restart session
+  ```
+- **Security checks**: Always review skills before installing (especially third-party). Check scans on ClawHub. Skills can execute code/tools — use sandboxing and approval gates.
+
+### 6. Troubleshooting
+- Skill not appearing? Restart Gateway (`openclaw gateway restart`) or new chat session.
+- Dependencies missing? Skills may prompt to install via Homebrew/npm.
+- Permission issues → Run with approvals enabled.
+- Use `openclaw skills check` or `openclaw doctor`.
+
+### Official Resources
+- Docs: [docs.openclaw.ai/tools/skills](https://docs.openclaw.ai/tools/skills) and [ClawHub section](https://docs.openclaw.ai/clawhub).
+- ClawHub: [clawhub.ai](https://clawhub.ai)
+- YouTube: Search “OpenClaw skills tutorial” for visual walkthroughs.
+
+Skills load dynamically based on precedence (workspace > global > bundled). Start with 3–5 trusted ones to avoid overwhelming your agent. 
+
+Let me know your use case (e.g., email, coding, browser) for specific skill recommendations, or if you need help with a particular skill!
+
+
 ## Add the calendar skills to openclaw
 welcome@jaisairams-Laptop workspace % openclaw skills search "calendar"
 
