@@ -1,6 +1,16 @@
 
 # openclaw skills Info 
 
+welcome@jaisairams-Laptop workspace % openclaw skills install github
+
+🦞 OpenClaw 2026.4.29 (a448042) — Less clicking, more shipping, fewer "where did that file go" moments.
+
+Downloading github@1.0.0 from ClawHub…
+
+Installing to /Users/welcome/.openclaw/workspace/skills/github…
+
+Installed github@1.0.0 -> /Users/welcome/.openclaw/workspace/skills/github
+
 # Search for skills
 
 1. openclaw skills search "calendar"     # or "github", "email", etc.
