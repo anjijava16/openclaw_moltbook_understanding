@@ -6,7 +6,92 @@ Alright, here’s the **full deep architecture flow** of an OpenClaw-style agent
 
 This is the *realistic production-style design* used by most modern agent frameworks (LangChain-like, AutoGPT-like, agent runtimes).
 
----
+
+**OpenClaw Deep Dive: Architecture, Services, and Complete File System**
+
+OpenClaw is a **self-hosted, open-source AI agent gateway** and runtime. It turns LLMs (Claude, GPT, Gemini, local models) into a persistent, tool-using personal assistant accessible via messaging apps. It runs as a long-lived daemon on your machine/VPS and emphasizes privacy, multi-channel support, memory persistence, and extensibility via skills.
+
+### High-Level Architecture (Hub-and-Spoke Model)
+- **Messaging Surfaces** (Channels) → **Gateway (Control Plane)** → **Agent Runtime** → **LLM Providers** + **Tools/Skills**.
+- **Gateway**: Central nervous system (Node.js daemon). Handles all connections, routing, sessions, queuing, and security. Runs on port **18789** (default: localhost).
+- **Agent Runtime**: Executes the agentic loop (prompt assembly → LLM call → tool execution → repeat until final response). Uses workspace files for context.
+- **Key Flows**:
+  1. Inbound message from any channel.
+  2. Normalized by channel adapter → Session resolution → Command queue.
+  3. Agent assembles prompt (bootstrap files + skills + tools + memory).
+  4. LLM inference + tool calls (sandboxed where possible).
+  5. Response streamed back; state persisted.
+
+**Core Services/Components**:
+- **Gateway Daemon**: Persistent process managing everything. Supports WebSocket clients (CLI, dashboard, nodes), cron/heartbeat, hooks, and pairing.
+- **Channel Adapters**: WhatsApp (Baileys), Telegram (grammY), Discord, Slack, Signal, iMessage, WebChat, etc. One Gateway owns all sessions.
+- **Session Manager**: Persists conversations (transcripts, metadata). Supports DM vs. group policies, compaction.
+- **Command/Agent Queue**: Prevents conflicts with lanes (global, per-session, cron). Modes like `collect`, `steer`.
+- **Memory System**: File-based + vector (SQLite/LanceDB). Includes daily logs, curated MEMORY.md, and heartbeat distillation.
+- **Skills Loader**: Dynamically loads SKILL.md instructions/tools.
+- **Tool Execution**: Built-in (filesystem, bash, browser/Playwright, etc.) + skill-provided. Sandboxing option.
+- **Prompt Assembly/Context Engine**: Builds dynamic system prompt from workspace files + metadata.
+- **Dashboard/Web UI + Nodes**: Browser control, mobile/desktop nodes for extra capabilities (canvas, camera, etc.).
+- **Plugins/Extensibility**: Provider plugins (LLMs), channel plugins, skills via ClawHub.
+
+### Complete File System Overview
+OpenClaw uses two primary root areas:
+
+1. **`~/.openclaw/`** — State, config, secrets, sessions (do **not** commit to git).
+2. **`~/.openclaw/workspace/`** (default; configurable) — Agent's "brain" and working directory (treat as private memory; git backup recommended).
+
+#### Detailed Directory Structure
+
+**`~/.openclaw/` (State Directory)**:
+- `openclaw.json` — Main config (JSON5; models, workspace path, channels, auth, sandbox, etc.).
+- `credentials/` — Secure tokens, WhatsApp sessions, OAuth (0600 permissions).
+- `agents/<agentId>/` — Per-agent data:
+  - `sessions/` — Transcripts (.jsonl), sessions.json.
+  - `agent/` — Auth profiles, codex-home (runtime state).
+- `skills/` — Globally managed/installed skills.
+- `sessions/` — Shared or legacy session data.
+- `logs/`, caches, memory vector stores (e.g., SQLite/LanceDB per agent).
+- `sandboxes/` (if enabled) — Isolated execution environments.
+
+**`~/.openclaw/workspace/` (Agent Workspace — Most Important)**:
+This is the default cwd for tools and context loading. Markdown files here are injected into the system prompt.
+
+Key files (bootstrap files):
+- **AGENTS.md** — Core operating instructions, rules, priorities, tool usage.
+- **SOUL.md** — Personality, tone, boundaries.
+- **USER.md** / **IDENTITY.md** — User profile and agent self-description (name, vibe, emoji).
+- **TOOLS.md** — Local tool conventions/guidance.
+- **MEMORY.md** — Curated long-term memory (facts, preferences).
+- **HEARTBEAT.md** — Periodic self-review checklist.
+- **BOOT.md** / **BOOTSTRAP.md** — Startup/first-run rituals.
+- `memory/YYYY-MM-DD.md` — Daily logs (auto-managed).
+- `skills/` — Workspace-specific skills (highest precedence).
+- `canvas/` — UI files for visual outputs.
+- Project folders, documents, outputs the agent creates.
+
+**Skills Locations** (Precedence: workspace > global > bundled):
+- Workspace: `~/.openclaw/workspace/skills/<name>/` (with SKILL.md).
+- Global: `~/.openclaw/skills/`.
+- Bundled/installed via `openclaw skills` or ClawHub.
+
+**Other Notes on Filesystem**:
+- Not a hard sandbox by default (agent can access absolute paths unless restricted).
+- Git-init often auto-done on workspace for backup.
+- Configurable workspace path in `openclaw.json`.
+- Sensitive data stays in `~/.openclaw/` (never in workspace).
+
+### Advanced Topics
+- **Security**: Pairing/approvals, allowlists, sandboxing, token auth, no public exposure (use localhost + SSH/Tailscale).
+- **Multi-Agent**: Possible via routing rules and per-agent workspaces.
+- **Heartbeat/Cron**: Background self-improvement and scheduled tasks.
+- **Scaling**: Runs on laptop, VPS, or Docker. Nodes add device capabilities.
+
+For the absolute latest/official details, visit:
+- **Docs**: https://docs.openclaw.ai/ (especially `/concepts/architecture`, `/concepts/agent-workspace`, `/tools/skills`).
+- **ClawHub**: https://clawhub.ai for skills.
+- GitHub: Search openclaw/openclaw.
+
+This covers the full system as of 2026. If you want a sample workspace tree visualization, config examples, specific component deep-dive (e.g., memory, sandboxing), or help customizing files, let me know!
 
 # 🧠 FULL SYSTEM ARCHITECTURE (DEEP VIEW)
 
